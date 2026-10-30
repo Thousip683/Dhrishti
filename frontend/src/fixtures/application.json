@@ -1,0 +1,326 @@
+{
+  "_meta": {
+    "description": "Deterministic development fixtures; not a real user session.",
+    "mock": true
+  },
+  "activity": {
+    "activity": {
+      "activity_date": "2026-10-30",
+      "calculation_id": "00000000-0000-0000-0000-000000000001",
+      "category": "travel",
+      "created_at": "2026-10-30T10:00:00Z",
+      "deleted": false,
+      "id": "00000000-0000-0000-0000-000000000002",
+      "kg_co2e": "1.246200",
+      "note": "",
+      "revision": 1
+    },
+    "request_id": "fixture-request",
+    "status": "success"
+  },
+  "calculation": {
+    "calculation": {
+      "assumptions": [],
+      "category": "travel",
+      "claim_ids": [
+        "00000000-0000-0000-0000-000000000001:emissions"
+      ],
+      "created_at": "2026-10-30T10:00:00Z",
+      "display_kg_co2e": "1.25",
+      "energy_conversion": null,
+      "factor_refs": [
+        {
+          "id": "bus",
+          "version": "DESNZ-2025-v1"
+        }
+      ],
+      "factor_snapshots": [
+        {
+          "approved": true,
+          "boundary": "operational",
+          "category": "travel",
+          "denominator_unit": "passenger_km",
+          "fixture_only": false,
+          "gas_basis": "CO2e",
+          "geography": "UK",
+          "id": "bus",
+          "limitations": "UK reference estimate; not India-specific. Boundary excludes unlisted lifecycle stages.",
+          "reference_year": 2025,
+          "source_locator": "Factors by Category row 5453; ID 25_314_3145_11_1",
+          "source_publisher": "UK Department for Energy Security and Net Zero",
+          "source_unit": "passenger.km",
+          "source_url": "https://assets.publishing.service.gov.uk/media/6846b6ea57f3515d9611f0dd/ghg-conversion-factors-2025-flat-format.xlsx",
+          "source_value": "0.10385",
+          "value": "0.10385",
+          "version": "DESNZ-2025-v1"
+        }
+      ],
+      "formula": "12 * 0.10385",
+      "id": "00000000-0000-0000-0000-000000000001",
+      "input": {
+        "distance_km": "12",
+        "mode": "bus",
+        "occupancy": null
+      },
+      "kg_co2e": "1.246200",
+      "normalized_quantity": "12.000000",
+      "normalized_unit": "passenger_km",
+      "recipe_version": null,
+      "warnings": [
+        "UK reference estimate; not India-specific. Boundary excludes unlisted lifecycle stages."
+      ]
+    },
+    "request_id": "fixture-request",
+    "status": "success"
+  },
+  "capabilities": {
+    "grids": [
+      {
+        "factor_ref": {
+          "id": "UK",
+          "version": "DESNZ-2025-v1"
+        },
+        "label": "United Kingdom reference",
+        "value": "UK"
+      }
+    ],
+    "limits": {
+      "decimal_places": 6,
+      "distance_km_max": "10000",
+      "hours_max": "24",
+      "kwh_max": "10000",
+      "mass_kg_max": "1000",
+      "note_max_length": 500,
+      "occupancy_max": 100,
+      "power_kw_max": "100",
+      "servings_max": "100"
+    },
+    "local_today": "2026-10-30",
+    "recipes": [
+      {
+        "exclusions": [
+          "Cooking energy",
+          "Oil",
+          "Seasonings"
+        ],
+        "ingredients": [
+          {
+            "factor_ref": {
+              "id": "rice",
+              "version": "Poore-Nemecek-2018-OWID"
+            },
+            "label": "rice",
+            "mass_kg": "0.1"
+          },
+          {
+            "factor_ref": {
+              "id": "peas",
+              "version": "Poore-Nemecek-2018-OWID"
+            },
+            "label": "peas",
+            "mass_kg": "0.15"
+          }
+        ],
+        "label": "Pea rice bowl",
+        "value": "pea_rice_bowl",
+        "version": "carbon-recipes-v1"
+      },
+      {
+        "exclusions": [
+          "Cooking energy",
+          "Oil",
+          "Seasonings"
+        ],
+        "ingredients": [
+          {
+            "factor_ref": {
+              "id": "rice",
+              "version": "Poore-Nemecek-2018-OWID"
+            },
+            "label": "rice",
+            "mass_kg": "0.1"
+          },
+          {
+            "factor_ref": {
+              "id": "poultry_meat",
+              "version": "Poore-Nemecek-2018-OWID"
+            },
+            "label": "poultry meat",
+            "mass_kg": "0.15"
+          }
+        ],
+        "label": "Chicken rice bowl",
+        "value": "chicken_rice_bowl",
+        "version": "carbon-recipes-v1"
+      }
+    ],
+    "regional_notice": "UK reference factors and global food averages only. India-specific grid factors are not configured. Estimates cover the stated boundaries, not a complete lifecycle footprint.",
+    "request_id": "fixture-request",
+    "status": "success",
+    "timezone": "Asia/Kolkata",
+    "travel": [
+      {
+        "factor_ref": {
+          "id": "bus",
+          "version": "DESNZ-2025-v1"
+        },
+        "label": "Bus",
+        "requires_occupancy": false,
+        "value": "bus"
+      },
+      {
+        "factor_ref": {
+          "id": "car_petrol",
+          "version": "DESNZ-2025-v1"
+        },
+        "label": "Petrol car",
+        "requires_occupancy": true,
+        "value": "car_petrol"
+      },
+      {
+        "factor_ref": {
+          "id": "car_diesel",
+          "version": "DESNZ-2025-v1"
+        },
+        "label": "Diesel car",
+        "requires_occupancy": true,
+        "value": "car_diesel"
+      }
+    ],
+    "waste": [
+      {
+        "label": "Food",
+        "routes": [
+          {
+            "factor_ref": {
+              "id": "food:landfill",
+              "version": "DESNZ-2025-v1"
+            },
+            "label": "Landfill",
+            "value": "landfill"
+          },
+          {
+            "factor_ref": {
+              "id": "food:compost",
+              "version": "DESNZ-2025-v1"
+            },
+            "label": "Compost",
+            "value": "compost"
+          }
+        ],
+        "value": "food"
+      },
+      {
+        "label": "Paper",
+        "routes": [
+          {
+            "factor_ref": {
+              "id": "paper:landfill",
+              "version": "DESNZ-2025-v1"
+            },
+            "label": "Landfill",
+            "value": "landfill"
+          },
+          {
+            "factor_ref": {
+              "id": "paper:recycling",
+              "version": "DESNZ-2025-v1"
+            },
+            "label": "Recycling",
+            "value": "recycling"
+          }
+        ],
+        "value": "paper"
+      }
+    ]
+  },
+  "empty_reductions": {
+    "request_id": "fixture-request",
+    "status": "success",
+    "suggestions": [],
+    "unavailable_reason": "NO_ELIGIBLE_ACTIVITIES"
+  },
+  "empty_summary": {
+    "request_id": "fixture-request",
+    "status": "success",
+    "summary": {
+      "activity_count": 0,
+      "by_category": {
+        "electricity": "0.000000",
+        "food": "0.000000",
+        "travel": "0.000000",
+        "waste": "0.000000"
+      },
+      "claim_ids": [
+        "summary:total"
+      ],
+      "coverage_note": "Recorded activities only. Days without logs are unknown, not zero real emissions.",
+      "daily": [
+        {
+          "activity_count": 0,
+          "date": "2026-10-30",
+          "has_records": false,
+          "recorded_kg_co2e": "0.000000"
+        }
+      ],
+      "display_total_kg_co2e": "0.00",
+      "end_date": "2026-10-31",
+      "logged_day_count": 0,
+      "start_date": "2026-10-30",
+      "timezone": "Asia/Kolkata",
+      "total_kg_co2e": "0.000000",
+      "warnings": [
+        "Totals combine the disclosed category boundaries; this is not a full lifecycle inventory."
+      ]
+    }
+  },
+  "populated_summary": {
+    "request_id": "fixture-request",
+    "status": "success",
+    "summary": {
+      "activity_count": 1,
+      "by_category": {
+        "electricity": "0.000000",
+        "food": "0.000000",
+        "travel": "1.246200",
+        "waste": "0.000000"
+      },
+      "claim_ids": [
+        "summary:total"
+      ],
+      "coverage_note": "Recorded activities only. Days without logs are unknown, not zero real emissions.",
+      "daily": [
+        {
+          "activity_count": 1,
+          "date": "2026-10-30",
+          "has_records": true,
+          "recorded_kg_co2e": "1.246200"
+        }
+      ],
+      "display_total_kg_co2e": "1.25",
+      "end_date": "2026-10-31",
+      "logged_day_count": 1,
+      "start_date": "2026-10-30",
+      "timezone": "Asia/Kolkata",
+      "total_kg_co2e": "1.246200",
+      "warnings": [
+        "Totals combine the disclosed category boundaries; this is not a full lifecycle inventory."
+      ]
+    }
+  },
+  "validation_error": {
+    "error": {
+      "code": "INVALID_REQUEST",
+      "field_errors": [
+        {
+          "field": "input.distance_km",
+          "reason": "required"
+        }
+      ],
+      "message": "Provide a distance in km.",
+      "retryable": false
+    },
+    "request_id": "fixture-error",
+    "status": "error"
+  }
+}

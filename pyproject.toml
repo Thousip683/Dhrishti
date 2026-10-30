@@ -1,0 +1,21 @@
+[project]
+name = "carbon-coach"
+version = "0.2.0"
+description = "Google ADK carbon footprint agent with auditable Python calculations"
+requires-python = ">=3.12"
+dependencies = ["google-adk==2.13.0", "fastapi==0.162.0", "uvicorn==0.54.0", "python-dotenv==1.2.4", "tzdata>=2025.2", "sqlalchemy==2.1.6", "alembic==1.20.1", "psycopg[binary]==3.3.6"]
+
+[dependency-groups]
+dev = [
+    "pytest==9.2.0",
+    "httpx==0.28.1",
+    "pytest-asyncio>=1.4.1",
+]
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+testpaths = ["tests"]
+addopts = "-m 'not integration'"
+markers = ["integration: live Gemini tests requiring an explicit API key and provider access"]
+asyncio_mode = "auto"
+asyncio_default_fixture_loop_scope = "function"

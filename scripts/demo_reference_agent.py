@@ -16,7 +16,7 @@ import uuid
 # Ensure carbon_coach is importable when run as a script
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
 
-from carbon_coach.service import CarbonCoachService
+from carbon_coach.reference_agent.service import CarbonCoachService
 
 
 BANNER = """

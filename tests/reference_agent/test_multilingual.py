@@ -11,12 +11,12 @@ separate eval file. These tests exercise the Python layer directly.
 """
 import pytest
 from types import SimpleNamespace
-from carbon_coach.carbon_engine import (
+from carbon_coach.reference_agent.carbon_engine import (
     calculate_electricity_emissions,
     calculate_food_emissions,
     calculate_travel_emissions,
 )
-from carbon_coach.activity_tracker import add_activity, list_activities
+from carbon_coach.reference_agent.activity_tracker import add_activity, list_activities
 
 
 @pytest.fixture(autouse=True)
@@ -48,7 +48,7 @@ class TestElectricityMultilingual:
 
     def test_telugu_session_electricity_logged(self):
         pytest.importorskip("google.adk.tools")
-        from carbon_coach.tracker_tools import log_electricity
+        from carbon_coach.reference_agent.tracker_tools import log_electricity
         # Simulate: user typed in Telugu; agent extracted kwh=5
         result = log_electricity(5.0, ctx("te_sess"))
         assert result["saved"] is True
@@ -58,7 +58,7 @@ class TestElectricityMultilingual:
 
     def test_hindi_session_electricity_logged(self):
         pytest.importorskip("google.adk.tools")
-        from carbon_coach.tracker_tools import log_electricity
+        from carbon_coach.reference_agent.tracker_tools import log_electricity
         result = log_electricity(5.0, ctx("hi_sess"))
         assert result["saved"] is True
         assert list_activities("hi_sess")[0]["calculation"]["geography"] == "India"
@@ -77,14 +77,14 @@ class TestFoodMultilingual:
 
     def test_telugu_food_session(self):
         pytest.importorskip("google.adk.tools")
-        from carbon_coach.tracker_tools import log_food
+        from carbon_coach.reference_agent.tracker_tools import log_food
         # Telugu user says 'అన్నం 200 గ్రాముల' → agent extracts food='rice', kg=0.2
         result = log_food("rice", 0.2, ctx("te_food_sess"))
         assert result["saved"] is True
 
     def test_hindi_food_session(self):
         pytest.importorskip("google.adk.tools")
-        from carbon_coach.tracker_tools import log_food
+        from carbon_coach.reference_agent.tracker_tools import log_food
         # Hindi user says '200 ग्राम चावल' → agent extracts food='rice', kg=0.2
         result = log_food("rice", 0.2, ctx("hi_food_sess"))
         assert result["saved"] is True
@@ -100,14 +100,14 @@ class TestTravelMultilingual:
 
     def test_telugu_travel_session(self):
         pytest.importorskip("google.adk.tools")
-        from carbon_coach.tracker_tools import log_travel
+        from carbon_coach.reference_agent.tracker_tools import log_travel
         # Telugu: '12 కి.మీ. రైలు' → agent extracts mode='train', km=12
         result = log_travel("train", 12, ctx("te_travel_sess"))
         assert result["saved"] is True
 
     def test_hindi_travel_session(self):
         pytest.importorskip("google.adk.tools")
-        from carbon_coach.tracker_tools import log_travel
+        from carbon_coach.reference_agent.tracker_tools import log_travel
         # Hindi: '12 km ट्रेन से' → agent extracts mode='train', km=12
         result = log_travel("train", 12, ctx("hi_travel_sess"))
         assert result["saved"] is True
@@ -118,7 +118,7 @@ class TestSessionIsolationMultilingual:
 
     def test_telugu_hindi_session_isolation(self):
         pytest.importorskip("google.adk.tools")
-        from carbon_coach.tracker_tools import log_electricity, get_summary
+        from carbon_coach.reference_agent.tracker_tools import log_electricity, get_summary
         log_electricity(5, ctx("te_user_sess"))
         log_electricity(3, ctx("hi_user_sess"))
         te_summary = get_summary("week", ctx("te_user_sess"))

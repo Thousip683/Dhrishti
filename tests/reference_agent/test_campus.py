@@ -4,13 +4,13 @@ All tests use an isolated SQLite database.
 Verifies privacy suppression, opted-in filtering, and leaderboard ranking.
 """
 import pytest
-from carbon_coach.campus_analytics import (
+from carbon_coach.reference_agent.campus_analytics import (
     get_campus_summary,
     get_department_comparison,
     get_hostel_leaderboard,
 )
-from carbon_coach.activity_tracker import add_activity
-from carbon_coach.carbon_engine import calculate_electricity_emissions
+from carbon_coach.reference_agent.activity_tracker import add_activity
+from carbon_coach.reference_agent.carbon_engine import calculate_electricity_emissions
 
 
 @pytest.fixture(autouse=True)

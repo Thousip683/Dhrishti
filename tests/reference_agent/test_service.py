@@ -10,9 +10,9 @@ Run all tests with:           pytest tests/test_service.py
 """
 import os
 import pytest
-from carbon_coach.service import CarbonCoachService
-from carbon_coach.activity_tracker import add_activity
-from carbon_coach.carbon_engine import (
+from carbon_coach.reference_agent.service import CarbonCoachService
+from carbon_coach.reference_agent.activity_tracker import add_activity
+from carbon_coach.reference_agent.carbon_engine import (
     calculate_electricity_emissions,
     calculate_food_emissions,
     calculate_travel_emissions,

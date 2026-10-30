@@ -4,7 +4,7 @@ All tests use an isolated in-memory SQLite database via the CARBON_DB_PATH fixtu
 """
 import pytest
 from datetime import datetime, timezone, timedelta
-from carbon_coach.activity_tracker import (
+from carbon_coach.reference_agent.activity_tracker import (
     add_activity,
     list_activities,
     list_activities_by_user,
@@ -12,7 +12,7 @@ from carbon_coach.activity_tracker import (
     get_summary_data_by_user,
     delete_activity,
 )
-from carbon_coach.carbon_engine import (
+from carbon_coach.reference_agent.carbon_engine import (
     calculate_electricity_emissions,
     calculate_food_emissions,
     calculate_travel_emissions,

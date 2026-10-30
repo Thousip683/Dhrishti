@@ -1,5 +1,5 @@
 import pytest
-from carbon_coach.carbon_engine import (
+from carbon_coach.reference_agent.carbon_engine import (
     calculate, calculate_electricity_emissions,
     calculate_travel_emissions, calculate_food_emissions,
     calculate_reduction,

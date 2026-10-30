@@ -4,13 +4,13 @@ All numerical savings must come from verified tool calls — no fabricated value
 Tests check determinism, edge cases, and qualitative fallback behaviour.
 """
 import pytest
-from carbon_coach.recommendations import (
+from carbon_coach.reference_agent.recommendations import (
     get_recommendations,
     what_if_food,
     what_if_travel,
 )
-from carbon_coach.activity_tracker import add_activity
-from carbon_coach.carbon_engine import (
+from carbon_coach.reference_agent.activity_tracker import add_activity
+from carbon_coach.reference_agent.carbon_engine import (
     calculate_electricity_emissions,
     calculate_food_emissions,
     calculate_travel_emissions,

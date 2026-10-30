@@ -10,7 +10,7 @@ Covers:
 """
 import math
 import pytest
-from carbon_coach.carbon_engine import (
+from carbon_coach.reference_agent.carbon_engine import (
     calculate,
     calculate_electricity_emissions,
     calculate_travel_emissions,
@@ -19,7 +19,7 @@ from carbon_coach.carbon_engine import (
     calculate_reduction,
     calculate_travel_comparison,
 )
-from carbon_coach.emission_factors import list_factors, get_factor
+from carbon_coach.reference_agent.emission_factors import list_factors, get_factor
 
 
 # ── Electricity ────────────────────────────────────────────────────────────────

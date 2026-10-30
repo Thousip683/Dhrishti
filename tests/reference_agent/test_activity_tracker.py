@@ -1,6 +1,6 @@
 import pytest
-from carbon_coach.activity_tracker import add_activity, list_activities, get_summary_data
-from carbon_coach.carbon_engine import calculate_electricity_emissions, calculate_food_emissions
+from carbon_coach.reference_agent.activity_tracker import add_activity, list_activities, get_summary_data
+from carbon_coach.reference_agent.carbon_engine import calculate_electricity_emissions, calculate_food_emissions
 from types import SimpleNamespace
 
 @pytest.fixture(autouse=True)
@@ -43,25 +43,25 @@ def test_invalid_period():
 
 def test_tool_context_isolation():
     pytest.importorskip('google.adk.tools')
-    from carbon_coach.tracker_tools import log_electricity, get_summary
+    from carbon_coach.reference_agent.tracker_tools import log_electricity, get_summary
     assert log_electricity(5, context('alice'))['saved']
     assert get_summary('week', context('alice'))['activity_count'] == 1
     assert get_summary('week', context('bob'))['activity_count'] == 0
 
 def test_negative_input_never_stored():
     pytest.importorskip('google.adk.tools')
-    from carbon_coach.tracker_tools import log_electricity
+    from carbon_coach.reference_agent.tracker_tools import log_electricity
     assert 'error' in log_electricity(-2, context('alice'))
     assert list_activities('alice') == []
 
 def test_food_savings_from_tools():
     pytest.importorskip('google.adk.tools')
-    from carbon_coach.coach_tools import compare_food_options
+    from carbon_coach.reference_agent.coach_tools import compare_food_options
     r = compare_food_options('poultry', 'peas', 0.2)
     assert r['saving_kg'] == pytest.approx(1.778)
     assert 'caveat' in r
 
 def test_bad_food_comparison():
     pytest.importorskip('google.adk.tools')
-    from carbon_coach.coach_tools import compare_food_options
+    from carbon_coach.reference_agent.coach_tools import compare_food_options
     assert 'error' in compare_food_options('unknown', 'peas', 0.2)
